@@ -24,12 +24,12 @@ import static com.example.centaio.Result.onPageStart;
 public class CentaIO {
 
     public static boolean collectMode = true;
-    public static boolean sShowLog = true;
-    static AtomicBoolean sStart = new AtomicBoolean(false);
+    public static boolean showLog = true;
+    static AtomicBoolean start = new AtomicBoolean(false);
     private boolean isFragmentStart = false; //当前fragment是否为显示界面
     private final TouchHandle mTouchHandle;
-    static String sLastPageName = "";//上一页面名字
-    static String sCurrentPageName = "";//当前页面名字
+    static String lastPageName = "";//上一页面名字
+    static String currentPageName = "";//当前页面名字
 
     private CentaIO() {
         mTouchHandle = new TouchHandle();
@@ -74,7 +74,7 @@ public class CentaIO {
     private void onActivityPageStart(Activity activity) {
         if (!collectMode) return;  //非收集模式  退出
         try {
-            sCurrentPageName = activity.getClass().getSimpleName();
+            currentPageName = activity.getClass().getSimpleName();
             onAppStart(activity);  //应用启动时上传
             onPageStart(activity);
         } catch (Exception e) {
@@ -83,7 +83,7 @@ public class CentaIO {
     }
 
     private void onActivityPageEnd() {
-        sLastPageName = sCurrentPageName;
+        lastPageName = currentPageName;
     }
 
     public void onFragmentPageStart(Fragment fragment) {
@@ -91,12 +91,12 @@ public class CentaIO {
         if (!fragment.getUserVisibleHint() || fragment.isHidden() || !fragment.isResumed() || isFragmentStart)
             return;
         String pageName = fragment.getClass().getSimpleName();
-        if (sCurrentPageName.equals(pageName)) return;//重复进入  退出
-        sLastPageName = sCurrentPageName;
-        sCurrentPageName = pageName;
+        if (currentPageName.equals(pageName)) return;//重复进入  退出
+        lastPageName = currentPageName;
+        currentPageName = pageName;
         isFragmentStart = true;
         try {
-            sCurrentPageName = fragment.getClass().getSimpleName();
+            currentPageName = fragment.getClass().getSimpleName();
             onPageStart(fragment);
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +108,7 @@ public class CentaIO {
         ///如果当前fragment已经结束 则退出   避免重复结束
         if (!isFragmentStart) return;  //非收集模式  退出
         isFragmentStart = false;
-        sLastPageName = sCurrentPageName;
+        lastPageName = currentPageName;
     }
 
 

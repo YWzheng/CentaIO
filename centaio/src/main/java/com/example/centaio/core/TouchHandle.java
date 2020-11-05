@@ -15,8 +15,6 @@ public  class TouchHandle {
 	//统计埋点
 	private static final String mClassName = TouchHandle.class.getSimpleName();
 	private ArrayList<OnViewClickListener> mListeners;
-	public TouchHandle(){
-	}
 
     public  void eventViewHit(Activity activity, MotionEvent event) {
 
