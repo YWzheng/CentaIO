@@ -97,7 +97,7 @@ public  class TouchHandle {
 
 	public void registerViewClickListener(OnViewClickListener watcher) {
 		if (mListeners == null) {
-			mListeners = new ArrayList<OnViewClickListener>();
+			mListeners = new ArrayList<>();
 		}
 		mListeners.add(watcher);
 	}

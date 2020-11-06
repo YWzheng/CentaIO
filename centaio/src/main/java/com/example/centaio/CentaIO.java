@@ -2,6 +2,7 @@ package com.example.centaio;//
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.centaio.callback.LifecycleCallbacks;
+import com.example.centaio.core.CentaIOService;
 import com.example.centaio.core.TouchHandle;
 import com.example.centaio.util.ViewUtils;
 
@@ -30,6 +32,7 @@ public class CentaIO {
     private final TouchHandle mTouchHandle;
     static String lastPageName = "";//上一页面名字
     static String currentPageName = "";//当前页面名字
+    public static Application application;
 
     private CentaIO() {
         mTouchHandle = new TouchHandle();
@@ -39,6 +42,8 @@ public class CentaIO {
     public static void init(@NonNull Application application, boolean collect) {
         application.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
         collectMode = collect;
+        CentaIO.application =application;
+        application.startService(new Intent(application, CentaIOService.class));
     }
 
     public static CentaIO getInstance() {
@@ -163,8 +168,6 @@ public class CentaIO {
             onFragmentPageEnd(fragment);
         }
     }
-
-
 
 
     public static void event(String idName, String viewName, String viewType) {

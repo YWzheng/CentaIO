@@ -17,19 +17,11 @@ public class Note implements Serializable {
     private long note_id;
 
     @ColumnInfo(name = "note_content")
-    // column name will be "note_content" instead of "content" in table
     private String content;
 
     private String title;
 
     private Date date;
-
-//    public Note(int note_id, String content, String title, Date date) {
-//        this.note_id = note_id;
-//        this.content = content;
-//        this.title = title;
-//        this.date = date;
-//    }
 
     public Note(String content, String title) {
         this.content = content;

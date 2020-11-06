@@ -2,4 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.centaio">
 
+    <application>
+        <service
+            android:name=".core.CentaIOService"
+            android:enabled="true"
+            android:exported="false"/>
+    </application>
+
 </manifest>
