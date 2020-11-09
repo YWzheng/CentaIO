@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -42,7 +43,7 @@ public class CentaIO {
     public static void init(@NonNull Application application, boolean collect) {
         application.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
         collectMode = collect;
-        CentaIO.application =application;
+        CentaIO.application = application;
         application.startService(new Intent(application, CentaIOService.class));
     }
 
@@ -50,24 +51,6 @@ public class CentaIO {
         return MonitorHolder.holder;
     }
 
-    private void viewClickListener(MotionEvent event, View view) {
-        try {
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                String viewName = "";
-                String viewType = "";
-                String idName = ViewUtils.getSimpleResourceName(view.getContext(), view.getId());
-                viewName = ViewUtils.getButtonName(view);//获取文本值
-                //动态生成view  比如listView
-                if (view.hasOnClickListeners() && TextUtils.isEmpty(idName)) {
-                    idName = viewName;
-                }
-                viewType = (view instanceof EditText) ? "text" : "button";
-                onClickButton(idName, viewName, viewType);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private static class MonitorHolder {
         private static final CentaIO holder = new CentaIO();
@@ -169,6 +152,28 @@ public class CentaIO {
         }
     }
 
+    private void viewClickListener(MotionEvent event, View view) {
+        try {
+            //事件拦截入口
+            Log.d("MotionEvent", "CentaIO: " + event.getAction());
+
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                String viewName = "";
+                String viewType = "";
+                String idName = ViewUtils.getSimpleResourceName(view.getContext(), view.getId());
+                viewName = ViewUtils.getButtonName(view);//获取文本值
+                //动态生成view  比如listView
+                if (view.hasOnClickListeners() && TextUtils.isEmpty(idName)) {
+                    idName = viewName;
+                }
+                viewType = (view instanceof EditText) ? "text" : "button";
+                onClickButton(idName, viewName, viewType);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void event(String idName, String viewName, String viewType) {
         onClickButton(idName, viewName, viewType);

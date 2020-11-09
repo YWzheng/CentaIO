@@ -13,6 +13,8 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
@@ -38,19 +40,21 @@ public class NetWorkUtils {
         }
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     @SuppressLint("CheckResult")
     public void send() {
-       retrofit.create(Api.class)
-               .send()
-               .subscribeOn(Schedulers.io())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(new Consumer<ResponseData>() {
-                   @Override
-                   public void accept(ResponseData responseData) throws Exception {
+        Call<ResponseData> send = retrofit.create(Api.class).send();
+        send.enqueue(new Callback<ResponseData>() {
+            @Override
+            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+                ResponseData body = response.body();
+                Log.d("TAG", "onResponse: "+body);
+            }
 
-                   }
-               });
+            @Override
+            public void onFailure(Call<ResponseData> call, Throwable t) {
+                Log.d("TAG", "onFailure: "+t.getMessage());
+            }
+        });
 
 
     }

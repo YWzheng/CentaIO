@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.centaio.net.NetWorkUtils;
+
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
@@ -31,9 +33,10 @@ public class CentaIOService extends Service {
         Observable
                 .interval(1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
-                .takeUntil(Observable.timer(5, TimeUnit.SECONDS))
                 .subscribe(num -> {
                     Log.d("CentaIO", "服务执行次数: " + num);
+                    NetWorkUtils netWorkUtils=new NetWorkUtils();
+                    netWorkUtils.send();
                 });
     }
 
