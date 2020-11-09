@@ -153,26 +153,33 @@ public class CentaIO {
     }
 
     private void viewClickListener(MotionEvent event, View view) {
-        try {
-            //事件拦截入口
-            Log.d("MotionEvent", "CentaIO: " + event.getAction());
 
-            if (event.getAction() == MotionEvent.ACTION_UP) {
+        //事件拦截入口
+        Log.d("MotionEvent", "CentaIO: " + event.getAction());
 
-                String viewName = "";
-                String viewType = "";
-                String idName = ViewUtils.getSimpleResourceName(view.getContext(), view.getId());
-                viewName = ViewUtils.getButtonName(view);//获取文本值
-                //动态生成view  比如listView
-                if (view.hasOnClickListeners() && TextUtils.isEmpty(idName)) {
-                    idName = viewName;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_UP:
+                try {
+                    String viewName = "";
+                    String viewType = "";
+                    String idName = ViewUtils.getSimpleResourceName(view.getContext(), view.getId());
+                    viewName = ViewUtils.getButtonName(view);//获取文本值
+                    //动态生成view  比如listView
+                    if (view.hasOnClickListeners() && TextUtils.isEmpty(idName)) {
+                        idName = viewName;
+                    }
+                    viewType = (view instanceof EditText) ? "text" : "button";
+                    onClickButton(idName, viewName, viewType);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                viewType = (view instanceof EditText) ? "text" : "button";
-                onClickButton(idName, viewName, viewType);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+                break;
         }
+
     }
 
     public static void event(String idName, String viewName, String viewType) {
