@@ -1,15 +1,10 @@
 package com.example.centaio.db;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 
 @Entity(tableName = Constants.TABLE_NAME_PAGE)
@@ -18,31 +13,25 @@ public class Page implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private long page_id;
 
-    private String name;
+    private String name;//页面名称
 
-    private String title;
+    private String from;//上一级页面
 
-    private Date date;
+    private Date time;//页面打开时间
 
-    public Page(String name, String title) {
+    public Page(String name, String from) {
         this.name = name;
-        this.title = title;
-        this.date = new Date(System.currentTimeMillis());
+        this.from = from;
+        this.time = new Date(System.currentTimeMillis());
     }
 
-    @Ignore
-    public Page() {
+    public long getPage_id() {
+        return page_id;
     }
 
-    public Date getDate() {
-        return date;
+    public void setPage_id(long page_id) {
+        this.page_id = page_id;
     }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-
 
     public String getName() {
         return name;
@@ -52,31 +41,19 @@ public class Page implements Serializable {
         this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFrom() {
+        return from;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Page page = (Page) o;
-        return page_id == page.page_id &&
-                Objects.equals(name, page.name) &&
-                Objects.equals(title, page.title) &&
-                Objects.equals(date, page.date);
+    public Date getTime() {
+        return time;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public int hashCode() {
-        return Objects.hash(page_id, name, title, date);
+    public void setTime(Date time) {
+        this.time = time;
     }
-
-    
 }

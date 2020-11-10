@@ -1,10 +1,8 @@
 package com.example.demo;
 
 import android.app.Application;
-import android.os.Build;
 
 import com.example.centaio.CentaIO;
-import com.example.centaio.db.NoteDatabase;
 import com.facebook.stetho.Stetho;
 
 public class App extends Application {

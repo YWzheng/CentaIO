@@ -1,7 +1,5 @@
 package com.example.demo.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -12,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.example.centaio.CentaIO;
-import com.example.centaio.db.NoteDatabase;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.demo.R;
 
 public class TestActivity extends AppCompatActivity {
@@ -30,7 +28,6 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.textView).setOnClickListener(v -> startActivity(new Intent(TestActivity.this, TestActivity.class)));
         listView.setAdapter(new Adapter());
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            CentaIO.event("li", "vo", "");
             new AlertDialog.Builder(this).setTitle("测试").setMessage(String.valueOf(position)).setPositiveButton("确定", (dialog, which) -> {
 
             }).show();

@@ -7,8 +7,8 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.example.centaio.net.NetWorkUtils;
+import com.example.centaio.util.ReportUtil;
 
-import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -31,12 +31,13 @@ public class CentaIOService extends Service {
     public void onCreate() {
         super.onCreate();
         Observable
-                .interval(1, TimeUnit.SECONDS)
+                .interval(30, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .subscribe(num -> {
                     Log.d("CentaIO", "服务执行次数: " + num);
-                    NetWorkUtils netWorkUtils=new NetWorkUtils();
-                    netWorkUtils.send();
+                    NetWorkUtils netWorkUtils = new NetWorkUtils();
+//                    netWorkUtils.send();
+                    ReportUtil.getReport();
                 });
     }
 

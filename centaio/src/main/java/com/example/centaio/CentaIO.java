@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.centaio.callback.LifecycleCallbacks;
 import com.example.centaio.core.CentaIOService;
 import com.example.centaio.core.TouchHandle;
+import com.example.centaio.db.AppDataBase;
 import com.example.centaio.util.ViewUtils;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -33,6 +34,7 @@ public class CentaIO {
     private final TouchHandle mTouchHandle;
     static String lastPageName = "";//上一页面名字
     static String currentPageName = "";//当前页面名字
+    public static AppDataBase database;
     public static Application application;
 
     private CentaIO() {
@@ -44,6 +46,7 @@ public class CentaIO {
         application.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
         collectMode = collect;
         CentaIO.application = application;
+        database = AppDataBase.getInstance(application);
         application.startService(new Intent(application, CentaIOService.class));
     }
 
@@ -180,10 +183,6 @@ public class CentaIO {
                 break;
         }
 
-    }
-
-    public static void event(String idName, String viewName, String viewType) {
-        onClickButton(idName, viewName, viewType);
     }
 
 }
