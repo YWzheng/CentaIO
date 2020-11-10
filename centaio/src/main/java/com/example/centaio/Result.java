@@ -28,9 +28,7 @@ public class Result {
         }
         if (showLog) Log.d("CentaIO", "app被打开了 ");
         //TODO   添加你的代码
-        database.getDevicesDao().insertDevices(new Devices("OPPO R9m", "5.1", "1080*2160", "123131231231231", "1.0", "1"));
-
-
+        database.getDevicesDao().insertDevices(new Devices("OPPO R9m"));
     }
 
     /*

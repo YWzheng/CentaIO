@@ -24,13 +24,13 @@ public class Devices implements Serializable {
 
     private String appCode;//appCode;
 
-    public Devices(String name, String sysVersion, String w_and_h, String UUID, String appVersion, String appCode) {
+    public Devices(String name) {
         this.name = name;
-        this.sysVersion = sysVersion;
-        this.w_and_h = w_and_h;
-        this.UUID = UUID;
-        this.appVersion = appVersion;
-        this.appCode = appCode;
+//        this.sysVersion = sysVersion;
+//        this.w_and_h = w_and_h;
+//        this.UUID = UUID;
+//        this.appVersion = appVersion;
+//        this.appCode = appCode;
     }
 
     public long getDevices_id() {
@@ -88,6 +88,4 @@ public class Devices implements Serializable {
     public void setAppCode(String appCode) {
         this.appCode = appCode;
     }
-
-
 }
