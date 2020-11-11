@@ -1,12 +1,12 @@
 package com.example.centaio.net;
 
 import retrofit2.Call;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 
 public interface Api {
 
 
-    @POST("/user/getToken.json")
+    @GET("/api/jokes/list")
     Call<ResponseData> send();
 
 }

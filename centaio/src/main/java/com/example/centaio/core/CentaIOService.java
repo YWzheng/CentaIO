@@ -37,7 +37,7 @@ public class CentaIOService extends Service {
                 .subscribe(num -> {
                     Log.d("CentaIO", "服务执行次数: " + num);
                     NetWorkUtils netWorkUtils = new NetWorkUtils();
-//                    netWorkUtils.send();
+                    netWorkUtils.send();
                     ReportUtil.getReport();
                 });
     }

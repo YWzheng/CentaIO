@@ -3,6 +3,8 @@ package com.example.centaio.net;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -20,7 +22,7 @@ public class NetWorkUtils {
     public NetWorkUtils() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://asian.dotplays.com")
+                    .baseUrl("https://www.mxnzp.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(
                             new OkHttpClient
@@ -40,7 +42,7 @@ public class NetWorkUtils {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 ResponseData body = response.body();
-                Log.d("TAG", "onResponse: "+body);
+                Log.d("TAG", "onResponse: "+new Gson().toJson(body));
             }
 
             @Override
