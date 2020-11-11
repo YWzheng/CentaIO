@@ -7,12 +7,12 @@ import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetWorkUtils {
@@ -24,6 +24,7 @@ public class NetWorkUtils {
             retrofit = new Retrofit.Builder()
                     .baseUrl("https://www.mxnzp.com")
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(
                             new OkHttpClient
                                     .Builder()
@@ -37,20 +38,11 @@ public class NetWorkUtils {
 
     @SuppressLint("CheckResult")
     public void send() {
-        Call<ResponseData> send = retrofit.create(Api.class).send();
-        send.enqueue(new Callback<ResponseData>() {
-            @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
-                ResponseData body = response.body();
-                Log.d("TAG", "onResponse: "+new Gson().toJson(body));
-            }
-
-            @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
-                Log.d("TAG", "onFailure: "+t.getMessage());
-            }
-        });
-
+        retrofit.create(Api.class)
+                .send()
+                .subscribeOn(Schedulers.io()) // 在子线程中进行Http访问
+                .observeOn(AndroidSchedulers.mainThread()) // UI线程处理返回接口
+                .subscribe(Data -> Log.d("TAG", "send: "+new Gson().toJson(Data)));
 
     }
 
