@@ -33,6 +33,7 @@ public class CentaIOService extends Service {
         Observable
                 .interval(30, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
+                .takeUntil(Observable.timer(3, TimeUnit.MINUTES))
                 .subscribe(num -> {
                     Log.d("CentaIO", "服务执行次数: " + num);
                     NetWorkUtils netWorkUtils = new NetWorkUtils();

@@ -28,7 +28,7 @@ public class Result {
         }
         if (showLog) Log.d("CentaIO", "app被打开了 ");
         //TODO   添加你的代码
-        database.getDevicesDao().insertDevices(new Devices("OPPO R9m"));
+        database.getDevicesDao().updateDevices(new Devices());
     }
 
     /*
@@ -45,7 +45,7 @@ public class Result {
             Log.d("CentaIO", "打开了新页面: " + object.getClass().getSimpleName() + "，上一页面=" + lastPageName);
         //TODO   添加你的代码
 
-        database.getPageDao().insertPage(new Page(currentPageName,lastPageName));
+        database.getPageDao().insertPage(new Page(currentPageName,className,lastPageName));
 
     }
 

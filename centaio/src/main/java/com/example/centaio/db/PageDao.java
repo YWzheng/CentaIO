@@ -29,6 +29,10 @@ public interface PageDao {
     @Update
     void updateNote(Page page);
 
+
+    @Query("DELETE FROM " + Constants.TABLE_NAME_PAGE)
+    void deleteAll();
+
     /*
      * delete the object from database
      * @param note, object to be deleted

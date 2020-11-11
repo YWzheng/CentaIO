@@ -25,6 +25,9 @@ public interface EventDao {
     void updateEvent(Event repos);
 
 
+    @Query("DELETE FROM " + Constants.TABLE_NAME_EVENT)
+    void deleteAll();
+
     @Delete
     void deleteEvent(Event event);
 

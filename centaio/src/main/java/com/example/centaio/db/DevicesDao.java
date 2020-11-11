@@ -23,6 +23,8 @@ public interface DevicesDao {
     @Update
     void updateDevices(Devices devices);
 
+    @Query("DELETE FROM " + Constants.TABLE_NAME_DEVICES)
+    void deleteAll();
 
     @Delete
     void deleteDevices(Devices devices);

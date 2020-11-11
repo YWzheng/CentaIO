@@ -3,12 +3,17 @@ package com.example.centaio.db;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.centaio.CentaIO;
+import com.example.centaio.util.DeviceUtils;
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 
 @Entity(tableName = Constants.TABLE_NAME_DEVICES)
 public class Devices implements Serializable {
 
+    @Expose()
     @PrimaryKey(autoGenerate = true)
     private long devices_id;
 
@@ -24,13 +29,12 @@ public class Devices implements Serializable {
 
     private String appCode;//appCode;
 
-    public Devices(String name) {
-        this.name = name;
-//        this.sysVersion = sysVersion;
-//        this.w_and_h = w_and_h;
-//        this.UUID = UUID;
-//        this.appVersion = appVersion;
-//        this.appCode = appCode;
+    public Devices() {
+        this.name = DeviceUtils.getDeviceModel();
+        this.sysVersion = DeviceUtils.getOsVersion();
+        this.w_and_h = DeviceUtils.getScreenWidth(CentaIO.application) + "*" + DeviceUtils.getScreenHeight(CentaIO.application);
+        this.appVersion = DeviceUtils.getAppVersionName(CentaIO.application);
+        this.appCode = DeviceUtils.getAppVersionCode(CentaIO.application);
     }
 
     public long getDevices_id() {

@@ -3,6 +3,8 @@ package com.example.centaio.db;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ import java.util.Date;
 @Entity(tableName = Constants.TABLE_NAME_EVENT)
 public class Event implements Serializable {
 
+    @Expose()
     @PrimaryKey(autoGenerate = true)
     private long event_id;
 
