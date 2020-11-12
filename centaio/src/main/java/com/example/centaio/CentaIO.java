@@ -1,7 +1,9 @@
 package com.example.centaio;//
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,6 +37,7 @@ public class CentaIO {
     private final TouchHandle mTouchHandle;
     static String lastPageName = "";//上一页面名字
     static String currentPageName = "";//当前页面名字
+    static String path = "";//页面路径
     public static AppDataBase database;
     public static Application application;
 
@@ -67,7 +70,10 @@ public class CentaIO {
     private void onActivityPageStart(Activity activity) {
         if (!collectMode) return;  //非收集模式  退出
         try {
+            ActivityManager manager = (ActivityManager) CentaIO.application.getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager.RunningTaskInfo info = manager.getRunningTasks(1).get(0);
             currentPageName = activity.getClass().getSimpleName();
+            path=info.topActivity.getClassName();
             onAppStart(activity);  //应用启动时上传
             onPageStart(activity);
         } catch (Exception e) {

@@ -223,8 +223,7 @@ public class DeviceUtils {
             return "NONE";
         }
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null == connectivityManager) {
             return null;
         }

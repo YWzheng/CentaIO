@@ -30,9 +30,12 @@ public class Devices implements Serializable {
 
     private String w_and_h;//设备宽高
 
-    private String UUID;//UUid;
+    private String devicesID;//devicesID;
+
+    private String netWorkType;//网络状态
 
     private String deviceIP;//设备IP
+
 
     public Devices() {
         this.name = DeviceUtils.getDeviceModel();
@@ -40,9 +43,10 @@ public class Devices implements Serializable {
         this.w_and_h = DeviceUtils.getScreenWidth(CentaIO.application) + "*" + DeviceUtils.getScreenHeight(CentaIO.application);
         this.appVersion = DeviceUtils.getAppVersionName(CentaIO.application);
         this.appCode = DeviceUtils.getAppVersionCode(CentaIO.application);
-        this.UUID = DeviceUtils.getUUID();
-        this.deviceOS = "android";
+        this.deviceOS = DeviceUtils.getPlatform();
+        this.netWorkType = DeviceUtils.getNetworkType(CentaIO.application);
         this.deviceIP = DeviceUtils.getLocalIpAddress(CentaIO.application);
+        this.devicesID=DeviceUtils.getAndroidId(CentaIO.application);
     }
 
     public long getDevices_id() {
@@ -77,12 +81,12 @@ public class Devices implements Serializable {
         this.w_and_h = w_and_h;
     }
 
-    public String getUUID() {
-        return UUID;
+    public String getDevicesID() {
+        return devicesID;
     }
 
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
+    public void setDevicesID(String devicesID) {
+        this.devicesID = devicesID;
     }
 
     public String getAppVersion() {
@@ -115,5 +119,13 @@ public class Devices implements Serializable {
 
     public void setDeviceIP(String deviceIP) {
         this.deviceIP = deviceIP;
+    }
+
+    public String getNetWorkType() {
+        return netWorkType;
+    }
+
+    public void setNetWorkType(String netWorkType) {
+        this.netWorkType = netWorkType;
     }
 }

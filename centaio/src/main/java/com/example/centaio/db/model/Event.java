@@ -19,16 +19,22 @@ public class Event implements Serializable {
 
     private String page;//事件所在页面
 
+    private String path;//点击事件路径
+
     private String name;//事件名称
+
+    private String viewID;//viewID
 
     private String type;//事件类型
 
     private Date time;//事件时间
 
 
-    public Event(String page, String name, String type) {
+    public Event(String page, String path, String name, String viewID, String type) {
         this.page = page;
+        this.path = path;
         this.name = name;
+        this.viewID = viewID;
         this.type = type;
         this.time = new Date(System.currentTimeMillis());
     }
@@ -71,5 +77,21 @@ public class Event implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getViewID() {
+        return viewID;
+    }
+
+    public void setViewID(String viewID) {
+        this.viewID = viewID;
     }
 }
