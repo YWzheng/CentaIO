@@ -1,10 +1,13 @@
-package com.example.centaio.db;
+package com.example.centaio.db.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.centaio.db.Constants;
+import com.example.centaio.db.model.Devices;
 
 import java.util.List;
 

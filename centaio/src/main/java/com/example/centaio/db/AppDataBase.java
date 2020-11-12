@@ -7,8 +7,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.centaio.db.dao.DevicesDao;
+import com.example.centaio.db.dao.EventDao;
+import com.example.centaio.db.dao.PageDao;
+import com.example.centaio.db.model.Devices;
+import com.example.centaio.db.model.Event;
+import com.example.centaio.db.model.Page;
 
-@Database(entities = {Devices.class, Page.class, Event.class}, version = 1)
+
+@Database(entities = {Devices.class, Page.class, Event.class}, version = Constants.DB_VERSION)
 @TypeConverters({DateRoomConverter.class})
 public abstract class AppDataBase extends RoomDatabase {
 
@@ -29,7 +36,9 @@ public abstract class AppDataBase extends RoomDatabase {
     }
 
     private static AppDataBase buildDatabaseInstance(Context context) {
-        return Room.databaseBuilder(context, AppDataBase.class, Constants.DB_NAME)
+        return
+                Room
+                .databaseBuilder(context, AppDataBase.class, Constants.DB_NAME)
                 .allowMainThreadQueries().build();
     }
 

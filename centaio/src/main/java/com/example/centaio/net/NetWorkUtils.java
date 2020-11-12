@@ -3,6 +3,7 @@ package com.example.centaio.net;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.centaio.db.model.AppLog;
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
@@ -19,12 +20,14 @@ public class NetWorkUtils {
 
     private Retrofit retrofit;
 
+    private final String BASE_URL = "http://10.7.11.22:9090";
+
     public NetWorkUtils() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://www.mxnzp.com")
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                     .client(
                             new OkHttpClient
                                     .Builder()
@@ -39,10 +42,12 @@ public class NetWorkUtils {
     @SuppressLint("CheckResult")
     public void send() {
         retrofit.create(Api.class)
-                .send()
+//                .get("0b0910cc-1f61-4ea8-8f21-ddc71829fe73")
+//                .get("50688810-c8a8-4e03-abdc-236629334955")
+                .send(new AppLog("asdadada"))
                 .subscribeOn(Schedulers.io()) // 在子线程中进行Http访问
                 .observeOn(AndroidSchedulers.mainThread()) // UI线程处理返回接口
-                .subscribe(Data -> Log.d("TAG", "send: "+new Gson().toJson(Data)));
+                .subscribe(Data -> Log.d("TAG", "send: " + new Gson().toJson(Data)));
 
     }
 

@@ -3,10 +3,10 @@ package com.example.centaio.util;
 import android.util.Log;
 
 import com.example.centaio.CentaIO;
-import com.example.centaio.db.Devices;
-import com.example.centaio.db.Event;
-import com.example.centaio.db.Page;
-import com.example.centaio.db.Report;
+import com.example.centaio.db.model.Devices;
+import com.example.centaio.db.model.Event;
+import com.example.centaio.db.model.Page;
+import com.example.centaio.db.model.Report;
 import com.google.gson.Gson;
 
 import java.util.List;

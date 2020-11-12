@@ -4,23 +4,25 @@ import java.util.List;
 
 public class ResponseData {
 
+
     /**
-     * code : 1
-     * msg : 数据返回成功
-     * data : {"page":2,"totalCount":9590,"totalPage":959,"limit":10,"list":[{"content":"儿子:\u201c爸爸，为什么王叔叔那么喜欢吃辣\u201d爸爸:\u201c你怎么知道王叔叔喜欢吃辣？\u201d儿子:\u201c别人都叫我妈妈为辣妈，我经常看到王叔叔抱着我妈妈又亲又啃\u201d爸爸:\u201c尼玛\u201d","updateTime":"2018-11-03 09:45:28"},"...这里只显示了一条数据..."]}
+     * code : 200
+     * message : 成功
+     * data : [{"iosidentification":"","keyId":"","parentKeyId":"","burPointName":"","identification":"","andIdentification":""}]
      */
 
     private int code;
-    private String msg;
+    private String message;
     /**
-     * page : 2
-     * totalCount : 9590
-     * totalPage : 959
-     * limit : 10
-     * list : [{"content":"儿子:\u201c爸爸，为什么王叔叔那么喜欢吃辣\u201d爸爸:\u201c你怎么知道王叔叔喜欢吃辣？\u201d儿子:\u201c别人都叫我妈妈为辣妈，我经常看到王叔叔抱着我妈妈又亲又啃\u201d爸爸:\u201c尼玛\u201d","updateTime":"2018-11-03 09:45:28"},"...这里只显示了一条数据..."]
+     * iosidentification :
+     * keyId :
+     * parentKeyId :
+     * burPointName :
+     * identification :
+     * andIdentification :
      */
 
-    private DataBean data;
+    private List<DataBean> data;
 
     public int getCode() {
         return code;
@@ -30,93 +32,76 @@ public class ResponseData {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public DataBean getData() {
+    public List<DataBean> getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(List<DataBean> data) {
         this.data = data;
     }
 
     public static class DataBean {
-        private int page;
-        private int totalCount;
-        private int totalPage;
-        private int limit;
-        /**
-         * content : 儿子:“爸爸，为什么王叔叔那么喜欢吃辣”爸爸:“你怎么知道王叔叔喜欢吃辣？”儿子:“别人都叫我妈妈为辣妈，我经常看到王叔叔抱着我妈妈又亲又啃”爸爸:“尼玛”
-         * updateTime : 2018-11-03 09:45:28
-         */
+        private String iosidentification;
+        private String keyId;
+        private String parentKeyId;
+        private String burPointName;
+        private String identification;
+        private String andIdentification;
 
-        private List<ListBean> list;
-
-        public int getPage() {
-            return page;
+        public String getIosidentification() {
+            return iosidentification;
         }
 
-        public void setPage(int page) {
-            this.page = page;
+        public void setIosidentification(String iosidentification) {
+            this.iosidentification = iosidentification;
         }
 
-        public int getTotalCount() {
-            return totalCount;
+        public String getKeyId() {
+            return keyId;
         }
 
-        public void setTotalCount(int totalCount) {
-            this.totalCount = totalCount;
+        public void setKeyId(String keyId) {
+            this.keyId = keyId;
         }
 
-        public int getTotalPage() {
-            return totalPage;
+        public String getParentKeyId() {
+            return parentKeyId;
         }
 
-        public void setTotalPage(int totalPage) {
-            this.totalPage = totalPage;
+        public void setParentKeyId(String parentKeyId) {
+            this.parentKeyId = parentKeyId;
         }
 
-        public int getLimit() {
-            return limit;
+        public String getBurPointName() {
+            return burPointName;
         }
 
-        public void setLimit(int limit) {
-            this.limit = limit;
+        public void setBurPointName(String burPointName) {
+            this.burPointName = burPointName;
         }
 
-        public List<ListBean> getList() {
-            return list;
+        public String getIdentification() {
+            return identification;
         }
 
-        public void setList(List<ListBean> list) {
-            this.list = list;
+        public void setIdentification(String identification) {
+            this.identification = identification;
         }
 
-        public static class ListBean {
-            private String content;
-            private String updateTime;
+        public String getAndIdentification() {
+            return andIdentification;
+        }
 
-            public String getContent() {
-                return content;
-            }
-
-            public void setContent(String content) {
-                this.content = content;
-            }
-
-            public String getUpdateTime() {
-                return updateTime;
-            }
-
-            public void setUpdateTime(String updateTime) {
-                this.updateTime = updateTime;
-            }
+        public void setAndIdentification(String andIdentification) {
+            this.andIdentification = andIdentification;
         }
     }
 }

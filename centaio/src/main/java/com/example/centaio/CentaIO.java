@@ -16,7 +16,7 @@ import com.example.centaio.callback.LifecycleCallbacks;
 import com.example.centaio.core.CentaIOService;
 import com.example.centaio.core.TouchHandle;
 import com.example.centaio.db.AppDataBase;
-import com.example.centaio.db.Devices;
+import com.example.centaio.db.model.Devices;
 import com.example.centaio.util.ViewUtils;
 
 import java.util.concurrent.atomic.AtomicBoolean;

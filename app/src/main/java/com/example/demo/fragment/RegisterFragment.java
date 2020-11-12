@@ -1,6 +1,5 @@
 package com.example.demo.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.demo.R;
-import com.example.demo.fragment.BaseViewFragment;
 
 
-@SuppressLint("ResourceAsColor")
 public class RegisterFragment extends BaseViewFragment implements OnClickListener {
 
     private TextView register_btn_getSMS;// 点击发送短信的按钮

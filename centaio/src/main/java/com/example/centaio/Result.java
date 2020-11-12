@@ -5,9 +5,9 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.centaio.db.Devices;
-import com.example.centaio.db.Event;
-import com.example.centaio.db.Page;
+import com.example.centaio.db.model.Devices;
+import com.example.centaio.db.model.Event;
+import com.example.centaio.db.model.Page;
 
 import static com.example.centaio.CentaIO.currentPageName;
 import static com.example.centaio.CentaIO.database;

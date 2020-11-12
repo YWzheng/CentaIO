@@ -1,8 +1,9 @@
-package com.example.centaio.db;
+package com.example.centaio.db.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.centaio.db.Constants;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;

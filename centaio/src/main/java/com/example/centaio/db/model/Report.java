@@ -1,4 +1,4 @@
-package com.example.centaio.db;
+package com.example.centaio.db.model;
 
 import java.util.List;
 
