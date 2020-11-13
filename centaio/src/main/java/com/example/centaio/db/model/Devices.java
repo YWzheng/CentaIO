@@ -32,16 +32,6 @@ public class Devices implements Serializable {
 
     private String deviceIP;//设备IP
 
-
-//    private String appVersion;//app版本
-//
-//    private String appCode;//appCode;
-//
-//    private String w_and_h;//设备宽高
-//
-//    private String netWorkType;//网络状态
-
-
     public Devices() {
         this.deviceName = DeviceUtils.getDeviceName();
         this.deviceId = DeviceUtils.getAndroidId(CentaIO.application);
@@ -50,10 +40,6 @@ public class Devices implements Serializable {
         this.deviceOSVersion = DeviceUtils.getOsVersion();
         this.deviceOS = DeviceUtils.getPlatform();
         this.deviceIP = DeviceUtils.getLocalIpAddress(CentaIO.application);
-//        this.w_and_h = DeviceUtils.getScreenWidth(CentaIO.application) + "*" + DeviceUtils.getScreenHeight(CentaIO.application);
-//        this.appVersion = DeviceUtils.getAppVersionName(CentaIO.application);
-//        this.appCode = DeviceUtils.getAppVersionCode(CentaIO.application);
-//        this.netWorkType = DeviceUtils.getNetworkType(CentaIO.application);
     }
 
     public long getDevices_id() {
