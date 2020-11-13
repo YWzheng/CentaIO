@@ -18,35 +18,42 @@ public class Devices implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private long devices_id;
 
+    private String deviceName;//设备型号
+
+    private String deviceId;//devicesID;
+
+    private String deviceVendor;//设备品牌
+
+    private String deviceModel;//设备名称
+
     private String deviceOS;//统计平台
 
-    private String sysVersion;//系统版本
-
-    private String name;//设备型号
-
-    private String appVersion;//app版本
-
-    private String appCode;//appCode;
-
-    private String w_and_h;//设备宽高
-
-    private String devicesID;//devicesID;
-
-    private String netWorkType;//网络状态
+    private String deviceOSVersion;//系统版本
 
     private String deviceIP;//设备IP
 
 
+//    private String appVersion;//app版本
+//
+//    private String appCode;//appCode;
+//
+//    private String w_and_h;//设备宽高
+//
+//    private String netWorkType;//网络状态
+
+
     public Devices() {
-        this.name = DeviceUtils.getDeviceModel();
-        this.sysVersion = DeviceUtils.getOsVersion();
-        this.w_and_h = DeviceUtils.getScreenWidth(CentaIO.application) + "*" + DeviceUtils.getScreenHeight(CentaIO.application);
-        this.appVersion = DeviceUtils.getAppVersionName(CentaIO.application);
-        this.appCode = DeviceUtils.getAppVersionCode(CentaIO.application);
+        this.deviceName = DeviceUtils.getDeviceName();
+        this.deviceId = DeviceUtils.getAndroidId(CentaIO.application);
+        this.deviceVendor = DeviceUtils.getDeviceVendor();
+        this.deviceModel = DeviceUtils.getDeviceModel();
+        this.deviceOSVersion = DeviceUtils.getOsVersion();
         this.deviceOS = DeviceUtils.getPlatform();
-        this.netWorkType = DeviceUtils.getNetworkType(CentaIO.application);
         this.deviceIP = DeviceUtils.getLocalIpAddress(CentaIO.application);
-        this.devicesID=DeviceUtils.getAndroidId(CentaIO.application);
+//        this.w_and_h = DeviceUtils.getScreenWidth(CentaIO.application) + "*" + DeviceUtils.getScreenHeight(CentaIO.application);
+//        this.appVersion = DeviceUtils.getAppVersionName(CentaIO.application);
+//        this.appCode = DeviceUtils.getAppVersionCode(CentaIO.application);
+//        this.netWorkType = DeviceUtils.getNetworkType(CentaIO.application);
     }
 
     public long getDevices_id() {
@@ -57,52 +64,28 @@ public class Devices implements Serializable {
         this.devices_id = devices_id;
     }
 
-    public String getName() {
-        return name;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
-    public String getSysVersion() {
-        return sysVersion;
+    public String getDeviceOSVersion() {
+        return deviceOSVersion;
     }
 
-    public void setSysVersion(String sysVersion) {
-        this.sysVersion = sysVersion;
+    public void setDeviceOSVersion(String deviceOSVersion) {
+        this.deviceOSVersion = deviceOSVersion;
     }
 
-    public String getW_and_h() {
-        return w_and_h;
+    public String getDeviceId() {
+        return deviceId;
     }
 
-    public void setW_and_h(String w_and_h) {
-        this.w_and_h = w_and_h;
-    }
-
-    public String getDevicesID() {
-        return devicesID;
-    }
-
-    public void setDevicesID(String devicesID) {
-        this.devicesID = devicesID;
-    }
-
-    public String getAppVersion() {
-        return appVersion;
-    }
-
-    public void setAppVersion(String appVersion) {
-        this.appVersion = appVersion;
-    }
-
-    public String getAppCode() {
-        return appCode;
-    }
-
-    public void setAppCode(String appCode) {
-        this.appCode = appCode;
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getDeviceOS() {
@@ -121,11 +104,19 @@ public class Devices implements Serializable {
         this.deviceIP = deviceIP;
     }
 
-    public String getNetWorkType() {
-        return netWorkType;
+    public String getDeviceVendor() {
+        return deviceVendor;
     }
 
-    public void setNetWorkType(String netWorkType) {
-        this.netWorkType = netWorkType;
+    public void setDeviceVendor(String deviceVendor) {
+        this.deviceVendor = deviceVendor;
+    }
+
+    public String getDeviceModel() {
+        return deviceModel;
+    }
+
+    public void setDeviceModel(String deviceModel) {
+        this.deviceModel = deviceModel;
     }
 }

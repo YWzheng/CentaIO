@@ -134,6 +134,15 @@ public class DeviceUtils {
         return null == imsi ? null : imsi.toUpperCase();
     }
 
+
+    public static String getDeviceName() {
+        return Build.DEVICE;
+    }
+
+    public static String getDeviceVendor() {
+        return Build.BOARD;
+    }
+
     /**
      * 获取Device model
      *
