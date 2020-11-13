@@ -20,7 +20,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         //埋点统计回调监听
-        CentaIO.init(this,true);
+        CentaIO.init(this,"0b0910cc-1f61-4ea8-8f21-ddc71829fe73",true);
 
         /*其他内容初始化*/
         mInstance = this;

@@ -2,13 +2,13 @@ package com.example.centaio.db.model;
 
 public class AppLog {
 
-    private final String data;
+    private final String logInfo;
 
     public AppLog(String data) {
-        this.data = data;
+        this.logInfo = data;
     }
 
     public String getData() {
-        return data;
+        return logInfo;
     }
 }

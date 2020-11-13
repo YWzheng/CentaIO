@@ -3,11 +3,13 @@ package com.example.centaio.db.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.centaio.CentaIO;
 import com.example.centaio.db.Constants;
+import com.example.centaio.util.DateUtils;
+import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
-import java.util.Date;
 
 
 @Entity(tableName = Constants.TABLE_NAME_PAGE)
@@ -17,19 +19,40 @@ public class Page implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private long page_id;
 
-    private String name;//页面名称
+    private String title;//标题
 
-    private String path;//页面路径
+    private String uploadType;
 
-    private String from;//上一级页面
+    private String happenTime;//页面打开时间
 
-    private Date time;//页面打开时间
+    private String webMonitorId;//项目id
 
-    public Page(String name, String path, String from) {
-        this.name = name;
-        this.path = path;
-        this.from = from;
-        this.time = new Date(System.currentTimeMillis());
+    private String customerKey;//活跃ID
+
+    private String uri;//页面名称
+
+    private String userId;//用户ID
+
+    private String deptId;//部门ID
+
+    private String devicesInfo;//设备信息
+
+    private String os;//统计平台
+
+    public Page(String name) {
+        this.title = name;
+        this.uploadType = "CUSTOMER_PV";
+        this.happenTime = DateUtils.getDateWithTime();
+        this.webMonitorId = CentaIO.webMonitorId;
+        this.customerKey = customerKey;
+        this.uri = name;
+        this.userId = userId;
+        this.deptId = deptId;
+        this.devicesInfo = new Gson().toJson(new Devices());
+        this.os = "android";
+    }
+
+    public Page() {
     }
 
     public long getPage_id() {
@@ -40,35 +63,83 @@ public class Page implements Serializable {
         this.page_id = page_id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getPath() {
-        return path;
+    public String getUploadType() {
+        return uploadType;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setUploadType(String uploadType) {
+        this.uploadType = uploadType;
     }
 
-    public String getFrom() {
-        return from;
+    public String getHappenTime() {
+        return happenTime;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setHappenTime(String happenTime) {
+        this.happenTime = happenTime;
     }
 
-    public Date getTime() {
-        return time;
+    public String getWebMonitorId() {
+        return webMonitorId;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setWebMonitorId(String webMonitorId) {
+        this.webMonitorId = webMonitorId;
+    }
+
+    public String getCustomerKey() {
+        return customerKey;
+    }
+
+    public void setCustomerKey(String customerKey) {
+        this.customerKey = customerKey;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getDevicesInfo() {
+        return devicesInfo;
+    }
+
+    public void setDevicesInfo(String devicesInfo) {
+        this.devicesInfo = devicesInfo;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
     }
 }

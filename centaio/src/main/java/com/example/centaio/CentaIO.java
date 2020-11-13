@@ -40,16 +40,18 @@ public class CentaIO {
     static String path = "";//页面路径
     public static AppDataBase database;
     public static Application application;
+    public static String webMonitorId;
 
     private CentaIO() {
         mTouchHandle = new TouchHandle();
         mTouchHandle.registerViewClickListener(this::viewClickListener);
     }
 
-    public static void init(@NonNull Application application, boolean collect) {
+    public static void init(@NonNull Application application, String webMonitorId, boolean collect) {
         application.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
         collectMode = collect;
         CentaIO.application = application;
+        CentaIO.webMonitorId = webMonitorId;
         database = AppDataBase.getInstance(application);
         application.startService(new Intent(application, CentaIOService.class));
         database.getDevicesDao().insertDevices(new Devices());
@@ -73,7 +75,7 @@ public class CentaIO {
             ActivityManager manager = (ActivityManager) CentaIO.application.getSystemService(Context.ACTIVITY_SERVICE);
             ActivityManager.RunningTaskInfo info = manager.getRunningTasks(1).get(0);
             currentPageName = activity.getClass().getSimpleName();
-            path=info.topActivity.getClassName();
+            path = info.topActivity.getClassName();
             onAppStart(activity);  //应用启动时上传
             onPageStart(activity);
         } catch (Exception e) {
