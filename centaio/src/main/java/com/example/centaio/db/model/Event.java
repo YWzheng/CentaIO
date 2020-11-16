@@ -71,10 +71,10 @@ public class Event implements Serializable {
         this.completeUrl = completeUrl;
         //TODO
         this.customerKey = "e292b2c6-7331-cf31-3cff-08d6e88f83ab";
-        this.userId = "e292b2c6-7331-cf31-3cff-08d6e88f83ab";
-        this.deptId = "0e70fb71-c4b4-41b3-8c6f-441d576d8a78";
-        this.burPointName = "测试埋点";
-        this.burPointId = "埋点ID";
+        this.userId = CentaIO.userId;
+        this.deptId = CentaIO.deptId;
+        this.burPointName = "androidSDK埋点-name";
+        this.burPointId = "androidSDK埋点-Id";
     }
 
     public long getEvent_id() {

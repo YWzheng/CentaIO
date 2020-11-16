@@ -3,6 +3,7 @@ package com.example.centaio.net;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.centaio.CentaIO;
 import com.example.centaio.util.ReportUtil;
 import com.google.gson.Gson;
 
@@ -45,7 +46,17 @@ public class NetWorkUtils {
                 .send(ReportUtil.getReport())
                 .subscribeOn(Schedulers.io()) // 在子线程中进行Http访问
                 .observeOn(AndroidSchedulers.mainThread()) // UI线程处理返回接口
-                .subscribe(Data -> Log.d("TAG", "send: " + new Gson().toJson(Data)));
+                .subscribe(Data ->
+                        {
+
+                            Log.d("CentaIO", "send: " + new Gson().toJson(Data));
+                            if (Data.getCode() == 200) {
+                                CentaIO.database.getEventDao().deleteAll();
+                                CentaIO.database.getPageDao().deleteAll();
+                            }
+                        }
+
+                );
 
     }
 

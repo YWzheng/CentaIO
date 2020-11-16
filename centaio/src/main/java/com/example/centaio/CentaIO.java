@@ -38,20 +38,25 @@ public class CentaIO {
     static String lastPageName = "";//上一页面名字
     static String currentPageName = "";//当前页面名字
     static String path = "";//页面路径
-    public static AppDataBase database;
+
     public static Application application;
+    public static AppDataBase database;
     public static String webMonitorId;
+    public static String userId;
+    public static String deptId;
 
     private CentaIO() {
         mTouchHandle = new TouchHandle();
         mTouchHandle.registerViewClickListener(this::viewClickListener);
     }
 
-    public static void init(@NonNull Application application, String webMonitorId, boolean collect) {
+    public static void init(@NonNull Application application, String webMonitorId, String userId, String depId, boolean collect) {
         application.registerActivityLifecycleCallbacks(new LifecycleCallbacks());
         collectMode = collect;
         CentaIO.application = application;
         CentaIO.webMonitorId = webMonitorId;
+        CentaIO.userId = userId;
+        CentaIO.deptId = depId;
         database = AppDataBase.getInstance(application);
         application.startService(new Intent(application, CentaIOService.class));
         database.getDevicesDao().insertDevices(new Devices());
@@ -87,7 +92,7 @@ public class CentaIO {
         lastPageName = currentPageName;
     }
 
-    public void onFragmentPageStart(Fragment fragment) {
+    private void onFragmentPageStart(Fragment fragment) {
         //如果当前fragment已经开始 则退出   避免重复开始
         if (!fragment.getUserVisibleHint() || fragment.isHidden() || !fragment.isResumed() || isFragmentStart)
             return;
@@ -105,7 +110,7 @@ public class CentaIO {
     }
 
 
-    public void onFragmentPageEnd(Fragment fragment) {
+    private void onFragmentPageEnd(Fragment fragment) {
         ///如果当前fragment已经结束 则退出   避免重复结束
         if (!isFragmentStart) return;  //非收集模式  退出
         isFragmentStart = false;
@@ -113,7 +118,7 @@ public class CentaIO {
     }
 
 
-    public void onActivityCreated(Activity activity) {
+    private void onActivityCreated(Activity activity) {
         if (!collectMode) return;  //非收集模式  退出
     }
 

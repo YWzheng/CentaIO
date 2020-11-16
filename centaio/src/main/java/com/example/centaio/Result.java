@@ -25,8 +25,9 @@ public class Result {
             return;
         }
         if (showLog) Log.d("CentaIO", "app被打开了 ");
-        //TODO   添加你的代码
+
         database.getDevicesDao().updateDevices(new Devices());
+
     }
 
     /*
@@ -37,7 +38,6 @@ public class Result {
 
         if (showLog)
             Log.d("CentaIO", "打开了新页面: " + object.getClass().getSimpleName() + "，上一页面=" + lastPageName);
-        //TODO   添加你的代码
         database.getPageDao().insertPage(new Page(currentPageName));
 
     }
@@ -48,8 +48,6 @@ public class Result {
     public static void onClickButton(String viewID, String viewText, String viewType) {
         if (showLog)
             Log.d("CentaIO", viewText + " 按钮被点击 id = " + viewID + "，viewType = " + viewType);
-        //TODO   添加你的代码
-
         database.getEventDao().insertEvent(new Event(currentPageName, viewText, currentPageName, path));
 
     }

@@ -21,7 +21,7 @@ public class TouchHandle {
 
         ViewGroup rootView = ViewUtils.getRootFrame(activity);
 
-        Log.d("MotionEvent", "TouchHandle: " + event.getAction());
+        Log.d("CentaIO", "TouchHandle: " + event.getAction());
 
         if (event.getAction() == MotionEvent.ACTION_UP) {
             //点击的view

@@ -49,8 +49,8 @@ public class Page implements Serializable {
         this.os = "android";
         //TODO
         this.customerKey = "e292b2c6-7331-cf31-3cff-08d6e88f83ab";
-        this.userId = "e292b2c6-7331-cf31-3cff-08d6e88f83ab";
-        this.deptId = "0e70fb71-c4b4-41b3-8c6f-441d576d8a78";
+        this.userId = CentaIO.userId;
+        this.deptId = CentaIO.deptId;
     }
 
     public Page() {

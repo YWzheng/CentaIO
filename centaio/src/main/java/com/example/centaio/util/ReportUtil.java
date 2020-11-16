@@ -18,7 +18,6 @@ public class ReportUtil {
 
         List<Page> pages = CentaIO.database.getPageDao().getPages();
         List<Event> events = CentaIO.database.getEventDao().getEvent();
-
         StringBuilder sb = new StringBuilder();
         for (Page page : pages) {
             sb.append(new Gson().toJson(page));
@@ -30,5 +29,13 @@ public class ReportUtil {
         }
         Log.d(TAG, new Gson().toJson(new AppLog(sb.toString())));
         return new AppLog(sb.toString());
+    }
+
+    public static boolean canReport() {
+
+        List<Page> pages = CentaIO.database.getPageDao().getPages();
+        List<Event> events = CentaIO.database.getEventDao().getEvent();
+
+        return pages.size() > 0 || events.size() > 0;
     }
 }

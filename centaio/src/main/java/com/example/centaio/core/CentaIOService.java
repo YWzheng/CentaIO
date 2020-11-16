@@ -31,15 +31,10 @@ public class CentaIOService extends Service {
     public void onCreate() {
         super.onCreate();
         Observable
-                .interval(0,30, TimeUnit.SECONDS)
+                .interval(30, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
-                .takeUntil(Observable.timer(3, TimeUnit.MINUTES))
-                .subscribe(num -> {
-                    Log.d("CentaIO", "服务执行次数: " + num);
-                    NetWorkUtils netWorkUtils = new NetWorkUtils();
-                    netWorkUtils.send();
-                    ReportUtil.getReport();
-                });
+                .takeUntil(Observable.timer(2, TimeUnit.MINUTES))
+                .subscribe(this::sendReport);
     }
 
     @Override
@@ -50,5 +45,13 @@ public class CentaIOService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private void sendReport(Long num) {
+        Log.d("CentaIO", "服务执行次数: " + num);
+        if (ReportUtil.canReport()) {
+            new NetWorkUtils().send();
+            Log.d("CentaIO", "网络执行次数: " + num);
+        }
     }
 }
