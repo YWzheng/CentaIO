@@ -3,7 +3,7 @@ package com.example.centaio.net;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.example.centaio.db.model.AppLog;
+import com.example.centaio.util.ReportUtil;
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
@@ -42,9 +42,7 @@ public class NetWorkUtils {
     @SuppressLint("CheckResult")
     public void send() {
         retrofit.create(Api.class)
-//                .get("0b0910cc-1f61-4ea8-8f21-ddc71829fe73")
-//                .get("50688810-c8a8-4e03-abdc-236629334955")
-                .send(new AppLog("asdadada"))
+                .send(ReportUtil.getReport())
                 .subscribeOn(Schedulers.io()) // 在子线程中进行Http访问
                 .observeOn(AndroidSchedulers.mainThread()) // UI线程处理返回接口
                 .subscribe(Data -> Log.d("TAG", "send: " + new Gson().toJson(Data)));
