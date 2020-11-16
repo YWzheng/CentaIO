@@ -70,7 +70,7 @@ public class Event implements Serializable {
         this.title = title;
         this.completeUrl = completeUrl;
         //TODO
-        this.customerKey = "e292b2c6-7331-cf31-3cff-08d6e88f83ab";
+        this.customerKey = CentaIO.customerKey;
         this.userId = CentaIO.userId;
         this.deptId = CentaIO.deptId;
         this.burPointName = "androidSDK埋点-name";

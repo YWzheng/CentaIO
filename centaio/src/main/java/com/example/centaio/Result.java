@@ -6,8 +6,10 @@ import android.util.Log;
 import com.example.centaio.db.model.Devices;
 import com.example.centaio.db.model.Event;
 import com.example.centaio.db.model.Page;
+import com.example.centaio.util.DeviceUtils;
 
 import static com.example.centaio.CentaIO.currentPageName;
+import static com.example.centaio.CentaIO.customerKey;
 import static com.example.centaio.CentaIO.database;
 import static com.example.centaio.CentaIO.lastPageName;
 import static com.example.centaio.CentaIO.path;
@@ -27,7 +29,7 @@ public class Result {
         if (showLog) Log.d("CentaIO", "app被打开了 ");
 
         database.getDevicesDao().updateDevices(new Devices());
-
+        customerKey= DeviceUtils.getUUID();
     }
 
     /*

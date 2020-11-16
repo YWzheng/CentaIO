@@ -48,7 +48,7 @@ public class Page implements Serializable {
         this.devicesInfo = new Gson().toJson(new Devices());
         this.os = "android";
         //TODO
-        this.customerKey = "e292b2c6-7331-cf31-3cff-08d6e88f83ab";
+        this.customerKey = CentaIO.customerKey;
         this.userId = CentaIO.userId;
         this.deptId = CentaIO.deptId;
     }

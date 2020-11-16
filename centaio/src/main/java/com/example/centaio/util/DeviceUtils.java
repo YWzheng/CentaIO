@@ -518,7 +518,7 @@ public class DeviceUtils {
      * @return uuid
      */
     public static String getUUID() {
-        return generateDeviceId();
+        return UUID.randomUUID().toString();
 //        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 //        final String tmDevice, tmSerial, tmPhone, androidId;
 //        tmDevice = "" + tm.getDeviceId();

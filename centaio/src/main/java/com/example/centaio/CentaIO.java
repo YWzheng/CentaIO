@@ -42,6 +42,7 @@ public class CentaIO {
     public static Application application;
     public static AppDataBase database;
     public static String webMonitorId;
+    public static String customerKey;
     public static String userId;
     public static String deptId;
 
@@ -198,6 +199,10 @@ public class CentaIO {
                 break;
         }
 
+    }
+
+    public void event(String id, String text, String type) {
+        onClickButton(id, text, type);
     }
 
 }

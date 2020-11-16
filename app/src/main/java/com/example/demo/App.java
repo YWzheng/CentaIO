@@ -29,8 +29,5 @@ public class App extends Application {
         mInstance = this;
 
         Stetho.initializeWithDefaults(this);
-
-
-
     }
 }

@@ -31,7 +31,7 @@ public class CentaIOService extends Service {
     public void onCreate() {
         super.onCreate();
         Observable
-                .interval(30, TimeUnit.SECONDS)
+                .interval(59, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .takeUntil(Observable.timer(2, TimeUnit.MINUTES))
                 .subscribe(this::sendReport);
